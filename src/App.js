@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Cigars from "./pages/Cigars";
+import Detail from "./pages/Detail";
+import NoMatch from "./pages/NoMatch";
+import Nav from "./components/Nav";
 
-class App extends Component {
-  render() {
-     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
-        <p>This is a start!</p>
+function App() {
+  return (
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Cigars} />
+          <Route exact path="/cigars" component={Cigars} />
+          <Route exact path="/cigars/:id" component={Detail} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
-    );
-    // return React.createElement('div', null, React.createElement('h1', null,  'I\'m a React App!!! Fuck yo couch!!!'))
-   }
+    </Router>
+  );
 }
+
 export default App;
